@@ -1,46 +1,53 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
-export const Form = styled.form`
-  border: 1px solid #bbb3b3;
-  border-radius: 5px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-  background-color: #e4eba1;
-`;
-
-export const Label = styled.label`
+export const FormStyled = styled.form`
   display: flex;
-  flex-flow: column wrap;
-  text-transform: uppercase;
-  font-weight: bold;
-  line-height: 2;
-  font-size: 20px;
-  color: #2a2a2a;
-  margin-bottom: 30px;
+  flex-direction: column;
+  width: 400px;
+  padding: 10px;
+  border: solid #cccccc;
 `;
 
-export const Input = styled.input`
-  width: 350px;
-  height: 25px;
-  color: #2a2a2a;
-  background-color: #eaf7c1;
-  border: 1px solid #bbb3b3;
-  border-radius: 3px;
-  margin: auto;
+export const LabelStyled = styled.label`
+  display: contents;
+  margin: 0;
+  font-size: 18px;
 `;
 
-export const ButtonAdd = styled.button`
-  width: 130px;
-  height: 40px;
-  text-transform: uppercase;
-  background-color: #4ec6ef;
-  color: #eaf7c1;
-  cursor: pointer;
-  border: 1px solid #4ec6ef;
-  border-radius: 3px;
+export const InputStyled = styled.input`
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 20px;  
+`;
+
+export const BtnStyled = styled.button`
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 20px;
   font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 30px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+export const TitleStyled = styled.h1`
+  margin: 40px;
+  font-size: 40px;
+`;
+
+export const SubtitleStyled = styled.h2`
+  margin: 40px auto 0;
+  font-size: 36px;
+`;
+
+export const CaptionFStyled = styled.h3`
+  margin: 20px auto;
+  font-size: 28px;
+  font-weight: 400;
 `;

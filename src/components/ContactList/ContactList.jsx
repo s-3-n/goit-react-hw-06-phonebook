@@ -1,40 +1,33 @@
-import PropTypes from 'prop-types';
-import {
-    ListItem,
-    Contact,
-    ButtonDelete,
-    ContactContainer,
-  } from './ContactList.styled';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ContactList = ({ contacts }) => {
-    const dispatch = useDispatch();
-  
-    return (
-        <ContactContainer>
-          {contacts.map(({ id, name, number }) => (
-            <ListItem key={id}>
-              <Contact>
-                {name}: {number}{' '}
-              </Contact>{' '}
-              <ButtonDelete onClick={() => dispatch(deleteContact(id))}>
-                Delete
-              </ButtonDelete>{' '}
-            </ListItem>
-          ))}
-        </ContactContainer>
-      );
-    };
+import { BtnStyled } from 'components/ContactForm/ContactForm.styled';
+import { ItemStyled, ListStyled } from './ContactList.styled';
+import { remove } from 'redux/contactsSlice';
+
+const ContactList = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.phoneBook.contacts);
+  const filter = useSelector(state => state.phoneBook.filter);
+
+  const showContacts = () => {
+    if (filter === '') return contacts;
+    return contacts.filter(el =>
+      el.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
+  const renderContacts = showContacts();
+
+  return (
+    <ListStyled>
+      {renderContacts.map(el => (
+        <ItemStyled key={el.id}>
+          {el.name}: {el.number}
+          <BtnStyled onClick={() => dispatch(remove(el.id))}>Delete</BtnStyled>
+        </ItemStyled>
+      ))}
+    </ListStyled>
+  );
+};
 
 export default ContactList;
-
-ContactList.propTypes = {
-    contacts: PropTypes.arrayOf(
-      PropTypes.exact({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  };
